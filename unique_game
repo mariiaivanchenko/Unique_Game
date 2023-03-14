@@ -1,0 +1,289 @@
+"""Unique game"""
+
+class Character:
+    """
+    Class that describes a character using atributes name.
+    Contains methods that could be used in child classes.
+    >>> katrine = Character("Katrine", 29)
+    >>> katrine.name
+    'Katrine'
+    >>> katrine.age
+    29
+    """
+    good_enemies = 0
+    def __init__(self, name:str, age: int) -> None:
+        self.name = name
+        self.age = age
+
+class Enemy(Character):
+    """
+    Represents an enemy using name, age, weakness.
+    >>> moscovyt = Enemy("igor", 29)
+    >>> moscovyt.age
+    29
+    >>> moscovyt.set_weakness("Teapot")
+    >>> moscovyt.fight("Teapot")
+    igor lost conrtol and failed battle
+    True
+    """
+    def __init__(self, name:str, age:int) -> None:
+        self.weakness = None
+        super().__init__(name, age)
+
+    def set_weakness(self, tool: str) -> None:
+        """
+        Sets an enemy weakness.
+        """
+        self.weakness = tool
+
+    def get_defeated(self) -> int:
+        """
+        Return amount of enemy fails.
+        """
+        return Character.good_enemies
+
+    def fight(self, tool:str) -> bool:
+        """
+        Enemy fights player.
+        """
+        if tool == self.weakness:
+            Character.good_enemies += 1
+            print(f"{self.name} lost conrtol and failed battle")
+            return True
+        print("You choosed wrong tool.")
+        return False
+
+class Boss(Character):
+    """
+    Represents special boss.
+    >>> altan = Boss('altan',35)
+    >>> altan.set_weakness("Granny pies")
+    >>> altan.fight("Lavatory pan")
+    You choosed wrong tool.
+    False
+    """
+    def __init__(self, name: str, age: int) -> None:
+        self.weakness = None
+        self.fail = 0
+        super().__init__(name, age)
+
+    def set_weakness(self, tool: str) -> None:
+        """
+        Sets boss weakness.
+        """
+        self.weakness = tool
+
+    def get_defeated(self) -> int:
+        """
+        Return True or False showing victory or fail.
+        """
+        return Character.good_enemies
+
+    def fight(self, tool:str) -> bool:
+        """
+        Boss fights player.
+        """
+        if tool == self.weakness:
+            Character.good_enemies += 1
+            print("You`re half way thought, you need to say ____ and \
+millions of people will respond.")
+            words = str(input())
+            while words != "Slava Ukraini!":
+                print("Try again")
+                words = str(input())
+            if words == "Slava Ukraini!":
+                print(f"{self.name} boss is defeated!!!")
+            return True
+        else:
+            print("You choosed wrong tool.")
+            return False
+
+class Volunteer(Character):
+    """
+    Represents an volunteer using name and package.
+    >>> volunteer1 = Volunteer("Pavlo", 23)
+    >>> volunteer1.name
+    'Pavlo'
+    >>> volunteer1.age
+    23
+    >>> volunteer1.talk()
+    Nice to meet you! Here is your package, be careful.
+    >>> volunteer1.get_package_from_vol()
+    """
+    def __init__(self, name: str, age: int) -> None:
+        super().__init__(name, age)
+        self.package = None
+
+    def set_package(self, item:str) -> None:
+        """
+        Sets volunterr pakcage.
+        """
+        self.package = item
+
+    def get_package_from_vol(self) -> str:
+        """
+        Return package of this volunteer.
+        """
+        return self.package
+
+    def talk(self) -> str:
+        """
+        Returns text that volunteer said.
+        """
+        print("Nice to meet you! Here is your package, be careful.")
+
+
+# DONE
+class Location:
+    """
+    Class that represents a location by its direction and name.
+    Contains methods that could be used in child classes.
+    >>> kyiv = City("Kyiv")
+    >>> kyiv.name
+    'Kyiv'
+    >>> lviv = City("Lviv")
+    >>> kyiv.link_city(lviv, "west")
+    >>> kyiv.location[0][1]
+    'west'
+    >>> kyiv.describe()
+    Kyiv
+    --------------------
+    The Lviv is west
+    --------------------
+    """
+    def __init__(self, name:str) -> None:
+        self.name = name
+        self.location = []
+
+    def link_city(self, o_city:object,direction:str) -> None:
+        """
+        Redirect from one city to other.
+        """
+        self.location.append((o_city, direction))
+
+    def describe(self) -> str:
+        """
+        Describe a location.
+        """
+        print(f'{self.name}\n--------------------')
+        for val in self.location:
+            print(f"The {val[0].name} is {val[1]}")
+        print('--------------------')
+
+class City(Location):
+    """
+    Represents a city using direction, enemy, package.
+    >>> kyiv = City("Kyiv")
+    >>> kyiv.name
+    'Kyiv'
+    >>> volunteer1 = Volunteer("Pavlo", 23)
+    >>> kyiv.set_volunteer(volunteer1)
+    >>> kyiv.get_volunteer().name
+    'Pavlo'
+    """
+    def __init__(self, name:str) -> None:
+        super().__init__(name)
+        self.enemy = None
+        self.volunteer = None
+
+    def set_enemy(self, enemy:object) -> None:
+        """
+        Changes default None to given one.
+        """
+        self.enemy = enemy
+
+    def get_enemy(self) -> object:
+        """
+        Tells about enemy.
+        """
+        return self.enemy
+
+    def set_volunteer(self, volunteer:object) -> None:
+        """
+        To set a volunteer i this city.
+        """
+        self.volunteer = volunteer
+
+    def get_volunteer(self) -> object:
+        """
+        Returns a volunteer object.
+        """
+        return self.volunteer
+
+    def get_package(self) -> None:
+        """
+        Changes default empty list to given one.
+        """
+        return self.volunteer.package
+
+    def move(self, direct:str) -> object:
+        """
+        Changes direction.
+        """
+        for i in self.location:
+            if direct in i:
+                return i[0]
+        return "No possible moves((("
+
+
+# DONE
+class Item:
+    """
+    Class that represents an item using name.
+    Contains methods that could be used in child classes.
+    >>> coffee = Item("Coffee", "drink")
+    >>> coffee.name
+    'Coffee'
+    >>> coffee.usage
+    'drink'
+    >>> coffee.describe()
+    You have package with Coffee there.
+    [take] to take
+    [talk] to talk to volunteer.
+    """
+    def __init__(self, name:str, usage:str) -> None:
+        self.name = name
+        self.usage = usage
+
+    def describe(self) -> str:
+        """
+        Describe a item.
+        """
+        print(f"You have package with {self.name} there.\n[take] \
+to take\n[talk] to talk to volunteer.")
+
+class Package(Item):
+    """
+    Represents a package with usefull things using name, location.
+    >>> medicine = Package("Medicine","medicine")
+    >>> medicine.usage
+    'medicine'
+    >>> medicine.name
+    'Medicine'
+    """
+    def __init__(self, name, usage:str) -> None:
+        super().__init__(name, usage)
+
+    def about(self, tool:str) -> str:
+        """
+        Tells about item.
+        """
+        print(f"This weapon called: {tool}")
+
+class Weapon(Package):
+    """
+    Represents a weapon to defeat an enemy.
+    >>> pan = Weapon(["Pan"],"defeat", [100])
+    >>> pan.name
+    ['Pan']
+    >>> pan.usage
+    'defeat'
+    >>> pan.power
+    [100]
+    >>> pan.about('Pan')
+    This weapon called: Pan and it`s power is 100.
+    You can use it to defeat moscovyts, who havent seen this thing before.
+    """
+    def __init__(self, name: list, usage:str, power:list) -> None:
+        super().__init__(name, usage)
+        self.power = power
