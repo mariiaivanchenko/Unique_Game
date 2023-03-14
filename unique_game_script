@@ -1,0 +1,138 @@
+"""Game script"""
+import unique_game
+
+# set cities
+kyiv = unique_game.City("Kyiv")
+lviv = unique_game.City("Lviv")
+chernivtsi = unique_game.City("Chernivtsi")
+zaporizhzhia = unique_game.City("Zaporizhzhia")
+mykolaiv = unique_game.City("Mykolaiv")
+kharkiv = unique_game.City("Kharkiv")
+
+# set enemies
+moscovyt1 = unique_game.Enemy("vanya", 25)
+moscovyt1.set_weakness("Lavatory pan")
+
+moscovyt2 = unique_game.Enemy("igor", 29)
+moscovyt2.set_weakness("Teapot")
+
+moscovyt3 = unique_game.Boss("altan", 32)
+moscovyt3.set_weakness("Granny pies")
+
+# set directions
+kyiv.link_city(lviv, "west")
+lviv.link_city(kyiv, "north")
+lviv.link_city(chernivtsi, "south-east")
+lviv.link_city(kharkiv, "east")
+lviv.link_city(zaporizhzhia, "east-south")
+lviv.link_city(mykolaiv, "south")
+chernivtsi.link_city(lviv, "west")
+kharkiv.link_city(lviv, "west")
+zaporizhzhia.link_city(lviv, "west")
+mykolaiv.link_city(lviv, "west")
+
+# set enemies
+kharkiv.set_enemy(moscovyt1)
+zaporizhzhia.set_enemy(moscovyt2)
+mykolaiv.set_enemy(moscovyt3)
+
+# set packages
+pan = unique_game.Weapon(["Lavatory pan","Teapot","Granny pies"], "weapon", [100, 150, 300])
+food = unique_game.Package(["Cheese", "Bread", "Meat","Water"], "food")
+med = unique_game.Package("Medicine", "medicine")
+
+# set volunteers
+volunteer1 = unique_game.Volunteer("Pavlo", 23)
+volunteer2 = unique_game.Volunteer("Mykhailo", 25)
+volunteer3 = unique_game.Volunteer("Serhyi", 30)
+
+volunteer1.set_package(food)
+volunteer2.set_package(med)
+volunteer3.set_package(pan)
+
+kyiv.set_volunteer(volunteer1)
+lviv.set_volunteer(volunteer3)
+chernivtsi.set_volunteer(volunteer2)
+
+current_place = lviv
+backpack = []
+weapon = []
+
+while unique_game.Enemy.good_enemies != 3:
+
+    print("\n")
+    if isinstance(current_place, str) is False:
+        current_place.describe()
+    else:
+        print("Incorrect input")
+        break
+    print(f'Your backpack: {backpack}')
+    print(f'Your weapon: {weapon}\n')
+
+
+    volunteer = current_place.get_volunteer()
+    enemy = current_place.get_enemy()
+    if volunteer is not None:
+        print("You need to find a volunteer and take package.")
+        item = current_place.get_package()
+        if item is not None:
+            item.describe()
+    elif enemy is not None:
+        print("You need to defeat all moscovyts in this city.\n[fight] to fight")
+    else:
+        if backpack != [] and unique_game.Character.good_enemies > 0:
+            print("You can give your package to fighters.\n[give] to give")
+        print('Change location')
+
+    command = input("> ")
+
+    if command in ["north", "south", "east", "west", "south-east", "east-south"]:
+        current_place = current_place.move(command)
+    elif command == "talk":
+        if volunteer is not None:
+            volunteer.talk()
+    elif command == "fight":
+        if enemy is not None:
+            print(f'Enemy: {enemy.name}\nAge:{enemy.age}')
+            print(f'Weakness: {enemy.weakness}')
+            print(f'Your weapon: {weapon}\n')
+            if "fail" in dir(enemy):
+                print("There is a Boss enemy, he is the most crazy one.")
+            print("What will you fight with?")
+            fight_with = input()
+
+            if fight_with not in weapon[0]:
+                print("Incorrect input")
+
+            for elem in weapon[0]:
+                if fight_with == elem:
+                    if enemy.fight(elem) is True:
+                        item.about(elem)
+                        print("Hooray, you won the fight!")
+                        current_place.set_enemy(None)
+                        weapon[0].remove(elem)
+                        if enemy.get_defeated() == 3 and weapon == [[]]:
+                            print("Congratulations, you have vanquished the \
+enemy horde and delivered all packages!")
+
+                    else:
+                        print("You lost the fight because you don`t have right tool.")
+                        print("Try again")
+
+        else:
+            print("There is no one here to fight with")
+    elif command == "take":
+        if item is not None:
+            print("You put the " + item.usage + " in your backpack.")
+            if item.usage is 'weapon':
+                weapon.append(volunteer.get_package_from_vol().name)
+            else:
+                backpack.append(volunteer.get_package_from_vol().name)
+            current_place.set_volunteer(None)
+        else:
+            print("There's nothing here to take!")
+    elif command == "give":
+        print("Thank you so much for your hepl. Slava Ukraini!")
+        backpack.pop()
+    else:
+        print("I don't know how to " + command)
