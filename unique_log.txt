@@ -1,0 +1,287 @@
+Lviv
+--------------------
+The Kyiv is north
+The Chernivtsi is south-east
+The Kharkiv is east
+The Zaporizhzhia is east-south
+The Mykolaiv is south
+--------------------
+Your backpack: []
+Your weapon: []
+
+You need to find a volunteer and take package.
+You have package with ['Lavatory pan', 'Teapot', 'Granny pies'] there.
+[take] to take
+[talk] to talk to volunteer.
+> talk
+Nice to meet you! Here is your package, be careful.
+
+
+Lviv
+--------------------
+The Kyiv is north
+The Chernivtsi is south-east
+The Kharkiv is east
+The Zaporizhzhia is east-south
+The Mykolaiv is south
+--------------------
+Your backpack: []
+Your weapon: []
+
+You need to find a volunteer and take package.
+You have package with ['Lavatory pan', 'Teapot', 'Granny pies'] there.
+[take] to take
+[talk] to talk to volunteer.
+> take
+You put the weapon in your backpack.
+
+
+Lviv
+--------------------
+The Kyiv is north
+The Chernivtsi is south-east
+The Kharkiv is east
+The Zaporizhzhia is east-south
+The Mykolaiv is south
+--------------------
+Your backpack: []
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+Change location
+> north
+
+
+Kyiv
+--------------------
+The Lviv is west
+--------------------
+Your backpack: []
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+You need to find a volunteer and take package.
+You have package with ['Cheese', 'Bread', 'Meat', 'Water'] there.
+[take] to take
+[talk] to talk to volunteer.
+> take
+You put the food in your backpack.
+
+
+Kyiv
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water']]
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+Change location
+> west
+
+
+Lviv
+--------------------
+The Kyiv is north
+The Chernivtsi is south-east
+The Kharkiv is east
+The Zaporizhzhia is east-south
+The Mykolaiv is south
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water']]
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+Change location
+> south-east
+
+
+Chernivtsi
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water']]
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+You need to find a volunteer and take package.
+You have package with Medicine there.
+[take] to take
+[talk] to talk to volunteer.
+> take
+You put the medicine in your backpack.
+
+
+Chernivtsi
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water'], 'Medicine']
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+Change location
+> west
+
+
+Lviv
+--------------------
+The Kyiv is north
+The Chernivtsi is south-east
+The Kharkiv is east
+The Zaporizhzhia is east-south
+The Mykolaiv is south
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water'], 'Medicine']
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+Change location
+> east
+
+
+Kharkiv
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water'], 'Medicine']
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+You need to defeat all moscovyts in this city.
+[fight] to fight
+> fight
+Enemy: vanya
+Age:25
+Weakness: Lavatory pan
+Your weapon: [['Lavatory pan', 'Teapot', 'Granny pies']]
+
+What will you fight with?
+Lavatory pan
+vanya lost conrtol and failed battle
+This weapon called: Lavatory pan
+Hooray, you won the fight!
+
+
+Kharkiv
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water'], 'Medicine']
+Your weapon: [['Teapot', 'Granny pies']]
+
+You can give your package to fighters.
+[give] to give
+Change location
+> give
+Thank you so much for your hepl. Slava Ukraini!
+
+
+Kharkiv
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water']]
+Your weapon: [['Teapot', 'Granny pies']]
+
+You can give your package to fighters.
+[give] to give
+Change location
+> west
+
+
+Lviv
+--------------------
+The Kyiv is north
+The Chernivtsi is south-east
+The Kharkiv is east
+The Zaporizhzhia is east-south
+The Mykolaiv is south
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water']]
+Your weapon: [['Teapot', 'Granny pies']]
+
+You can give your package to fighters.
+[give] to give
+Change location
+> east-south
+
+
+Zaporizhzhia
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water']]
+Your weapon: [['Teapot', 'Granny pies']]
+
+You need to defeat all moscovyts in this city.
+[fight] to fight
+> fight
+Enemy: igor
+Age:29
+Weakness: Teapot
+Your weapon: [['Teapot', 'Granny pies']]
+
+What will you fight with?
+Teapot
+igor lost conrtol and failed battle
+This weapon called: Teapot
+Hooray, you won the fight!
+
+
+Zaporizhzhia
+--------------------
+The Lviv is west
+--------------------
+Your backpack: [['Cheese', 'Bread', 'Meat', 'Water']]
+Your weapon: [['Granny pies']]
+
+You can give your package to fighters.
+[give] to give
+Change location
+> give
+Thank you so much for your hepl. Slava Ukraini!
+
+
+Zaporizhzhia
+--------------------
+The Lviv is west
+--------------------
+Your backpack: []
+Your weapon: [['Granny pies']]
+
+Change location
+> west
+
+
+Lviv
+--------------------
+The Kyiv is north
+The Chernivtsi is south-east
+The Kharkiv is east
+The Zaporizhzhia is east-south
+The Mykolaiv is south
+--------------------
+Your backpack: []
+Your weapon: [['Granny pies']]
+
+Change location
+> south
+
+
+Mykolaiv
+--------------------
+The Lviv is west
+--------------------
+Your backpack: []
+Your weapon: [['Granny pies']]
+
+You need to defeat all moscovyts in this city.
+[fight] to fight
+> fight
+Enemy: altan
+Age:32
+Weakness: Granny pies
+Your weapon: [['Granny pies']]
+
+There is a Boss enemy, he is the most crazy one.
+What will you fight with?
+Granny pies
+You`re half way thought, you need to say ____ and millions of people will respond.
+Slava Ukraini!
+altan boss is defeated!!!
+This weapon called: Granny pies
+Hooray, you won the fight!
+Congratulations, you have vanquished the enemy horde and delivered all packages!
